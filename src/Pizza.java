@@ -1,4 +1,4 @@
-public abstract class Pizza implements Ingredients{
+public abstract class Pizza {
 
     public abstract void pizza();
 

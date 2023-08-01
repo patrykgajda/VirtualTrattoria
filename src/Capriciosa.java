@@ -13,10 +13,10 @@ public class Capriciosa extends Pizza{
     }
 
 
-    @Override
-    public void addIngredient() {
-        capriciosaIngredients.add(Ingredients.);
-    }
+//    @Override
+//    public void addIngredient() {
+//        capriciosaIngredients.add(Ingredients.);
+//    }
     @Override
     public void pizza() {
         addBasicIngredient();
