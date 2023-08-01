@@ -8,7 +8,7 @@ public enum Ingredients {
 
     String name;
 
-    private Ingredients (String name) {
+    Ingredients (String name) {
         this.name = name;
     }
 

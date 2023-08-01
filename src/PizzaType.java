@@ -1,5 +1,7 @@
 public enum PizzaType {
-    CAPRICIOSA("capriciosa");
+    CAPRICIOSA("Capriciosa"),
+    MARGHERITA("Margherita"),
+    CALZONE("Calzone");
 
     String name;
     private PizzaType (String name) {
