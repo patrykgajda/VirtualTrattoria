@@ -5,4 +5,5 @@ public abstract class Pizza implements Ingredients{
     public void getOrder() {
         System.out.println("getorder");
     }
+    public abstract void addBasicIngredient();
 }

@@ -2,19 +2,20 @@ import java.util.LinkedList;
 
 public class Capriciosa extends Pizza{
 
-    LinkedList<String> capriciosaIngredients = new LinkedList<>();
+    LinkedList<Ingredients> capriciosaIngredients = new LinkedList<>();
 
     @Override
     public void addBasicIngredient() {
-        capriciosaIngredients.add(tomatoSauce);
-        capriciosaIngredients.add(cheese);
-        capriciosaIngredients.add(ham);
-        capriciosaIngredients.add(mushroom);
+        capriciosaIngredients.add(Ingredients.TOMATOSAUCE);
+        capriciosaIngredients.add(Ingredients.CHEESE);
+        capriciosaIngredients.add(Ingredients.HAM);
+        capriciosaIngredients.add(Ingredients.MUSHROOM);
     }
+
 
     @Override
     public void addIngredient() {
-        capriciosaIngredients.add(cheese);
+        capriciosaIngredients.add(Ingredients.);
     }
     @Override
     public void pizza() {
