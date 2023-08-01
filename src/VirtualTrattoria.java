@@ -1,5 +1,3 @@
-import java.sql.SQLOutput;
-
 public class VirtualTrattoria {
 
     public static void main(String[] args) {
