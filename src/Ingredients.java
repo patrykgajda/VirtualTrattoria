@@ -1,9 +1,14 @@
+import java.util.ArrayList;
+
 public enum Ingredients {
 
     TOMATOSAUCE ("Tomato Sauce"),
     CHEESE ("Cheese"),
     HAM ("Ham"),
-    MUSHROOM ("Mushrooms");
+    MUSHROOM ("Mushrooms"),
+    PROSCIUTTO("Prosciutto"),
+    MOZARELLA("Mozarella");
+
 
 
     String name;
@@ -11,5 +16,6 @@ public enum Ingredients {
     Ingredients (String name) {
         this.name = name;
     }
+
 
 }
