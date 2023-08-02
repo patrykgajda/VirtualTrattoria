@@ -1,12 +1,15 @@
-public interface Ingredients {
+public enum Ingredients {
 
-    String tomatoSauce = "Tomato Sauce";
-    String cheese = "Cheese";
-    String ham = "Ham";
-    String mushroom = "Mushrooms";
+    TOMATOSAUCE ("Tomato Sauce"),
+    CHEESE ("Cheese"),
+    HAM ("Ham"),
+    MUSHROOM ("Mushrooms");
 
 
-    void addBasicIngredient();
-    void addIngredient();
+    String name;
+
+    Ingredients (String name) {
+        this.name = name;
+    }
 
 }
