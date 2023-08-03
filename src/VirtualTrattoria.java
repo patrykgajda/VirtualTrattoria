@@ -9,18 +9,19 @@ public class VirtualTrattoria {
 
         Scanner scanner = new Scanner(System.in);
         String clientPizzaChoice;
-        String decision = "yes";
+        String doYouAlterIngredients;
         String clientIngredientChoice;
-        Ingredients availableIngredients[] = {Ingredients.TOMATOSAUCE, Ingredients.CHEESE, Ingredients.MOZARELLA,Ingredients.MUSHROOM, Ingredients.HAM, Ingredients.PROSCIUTTO};
+        Ingredients[] availableIngredients = {Ingredients.TOMATOSAUCE, Ingredients.CHEESE, Ingredients.MOZARELLA,Ingredients.MUSHROOM, Ingredients.HAM, Ingredients.PROSCIUTTO};
 
-// Adding client + Menu
+// Adding client + presenting Menu
         System.out.println("Hi, what's your name?");
-        UserName newUser = new UserName(scanner.nextLine());
+        Clients newClient = new Clients(scanner.nextLine());
         System.out.println("What pizza would you like to eat?");
         System.out.println("Those are available");
-        System.out.println(PizzaType.CAPRICIOSA + " (Tomato sauce, Cheese, Ham, Mushrooms)");
         System.out.println(PizzaType.MARGHERITA + " (Tomato sauce, Cheese)");
+        System.out.println(PizzaType.CAPRICIOSA + " (Tomato sauce, Cheese, Ham, Mushrooms)");
         System.out.println(PizzaType.CALZONE + " (Tomato sauce, Mozarella, Prosciutto)");
+
 // creating pizza object + adding basic ingredients for selected pizza
         Pizza pizza = new Pizza();
 
@@ -39,13 +40,13 @@ public class VirtualTrattoria {
 
 // altering Ingredients
         System.out.println("Would you like to alter your ingredients");
-        decision = scanner.nextLine();
+        doYouAlterIngredients = scanner.nextLine();
 
-        while (decision.equals("yes")) {
+        while (doYouAlterIngredients.equals("yes")) {
             System.out.println("Do you want to add or remove ingredient?");
-            String changeIngredient = scanner.nextLine();
+            String addOrRemoveIngredients = scanner.nextLine();
 // adding Ingredients
-            if (changeIngredient.equals("add")) {
+            if (addOrRemoveIngredients.equals("add")) {
                 System.out.println("Those are available to add: " + Arrays.toString(availableIngredients));
                 System.out.println("What is your choice");
                 clientIngredientChoice = scanner.nextLine().toLowerCase();
@@ -57,13 +58,12 @@ public class VirtualTrattoria {
                     }
                 }
 // removing Ingredients
-            } else if (changeIngredient.equals("remove")) {
+            } else if (addOrRemoveIngredients.equals("remove")) {
 
-                System.out.println("What is your choice");
+                System.out.println("What should we remove?");
                 clientIngredientChoice = scanner.nextLine().toLowerCase();
 
                 for (Ingredients availableIngredient : pizza.pizzaIngredients) {
-                    System.out.println(clientIngredientChoice);
                     // The java string valueOf() method converts different types of values into string.
                     if (valueOf(availableIngredient).toLowerCase().equals(clientIngredientChoice)) {
                         pizza.pizzaIngredients.remove(availableIngredient);
@@ -71,7 +71,7 @@ public class VirtualTrattoria {
                 }
             }
             System.out.println("Do you want to change something else");
-            decision = scanner.nextLine();
+            doYouAlterIngredients = scanner.nextLine();
         }
 
         System.out.println("Your order: " + clientPizzaChoice + " it contains: " + pizza.pizzaIngredients);
