@@ -21,7 +21,40 @@ public class Pizza {
         pizzaIngredients.add(Ingredients.PROSCIUTTO);
     }
 
-    public void addIngredient() {
-//        pizzaIngredients.add(Ingredients.)
+    public void addTomatoSauceIngredient() {
+        pizzaIngredients.add(Ingredients.TOMATOSAUCE);
+    }
+    public void addCheeseIngredient() {
+        pizzaIngredients.add(Ingredients.CHEESE);
+    }
+    public void addHamIngredient() {
+        pizzaIngredients.add(Ingredients.HAM);
+    }
+    public void addMushroomIngredient() {
+        pizzaIngredients.add(Ingredients.MUSHROOM);
+    }
+    public void addProsciuttoIngredient() {
+        pizzaIngredients.add(Ingredients.PROSCIUTTO);
+    }
+    public void addMozarellaIngredient() {
+        pizzaIngredients.add(Ingredients.MOZARELLA);
+    }
+    public void removeTomatoSauceIngredient() {
+        pizzaIngredients.remove(Ingredients.TOMATOSAUCE);
+    }
+    public void removeCheeseIngredient() {
+        pizzaIngredients.remove(Ingredients.CHEESE);
+    }
+    public void removeHamIngredient() {
+        pizzaIngredients.remove(Ingredients.HAM);
+    }
+    public void removeMushroomIngredient() {
+        pizzaIngredients.remove(Ingredients.MUSHROOM);
+    }
+    public void removeProsciuttoIngredient() {
+        pizzaIngredients.remove(Ingredients.PROSCIUTTO);
+    }
+    public void removeMozarellaIngredient() {
+        pizzaIngredients.remove(Ingredients.MOZARELLA);
     }
 }

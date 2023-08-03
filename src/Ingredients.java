@@ -1,13 +1,11 @@
-import java.util.ArrayList;
-
 public enum Ingredients {
 
-    TOMATOSAUCE ("Tomato Sauce"),
-    CHEESE ("Cheese"),
-    HAM ("Ham"),
-    MUSHROOM ("Mushrooms"),
-    PROSCIUTTO("Prosciutto"),
-    MOZARELLA("Mozarella");
+    TOMATOSAUCE ("tomato sauce"),
+    CHEESE ("cheese"),
+    HAM ("ham"),
+    MUSHROOM ("mushrooms"),
+    PROSCIUTTO("prosciutto"),
+    MOZARELLA("mozarella");
 
 
 
