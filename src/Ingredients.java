@@ -5,7 +5,7 @@ public enum Ingredients {
     HAM ("ham"),
     MUSHROOM ("mushrooms"),
     PROSCIUTTO("prosciutto"),
-    MOZARELLA("mozarella");
+    MOZZARELLA("mozzarella");
 
 
 
