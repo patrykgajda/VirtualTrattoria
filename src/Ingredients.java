@@ -9,7 +9,7 @@ public enum Ingredients {
 
 
 
-    String name;
+    final String name;
 
     Ingredients (String name) {
         this.name = name;

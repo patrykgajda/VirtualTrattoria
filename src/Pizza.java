@@ -3,6 +3,10 @@ import java.util.LinkedList;
 public class Pizza {
     LinkedList<Ingredients> pizzaIngredients = new LinkedList<>();
 
+    Pizza(PizzaType pizzaType){
+
+    }
+
 
     public void addMargheritaIngredients() {
         pizzaIngredients.add(Ingredients.TOMATOSAUCE);

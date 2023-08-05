@@ -3,7 +3,7 @@ public enum PizzaType {
     MARGHERITA("margherita"),
     CALZONE("calzone");
 
-    String name;
+    final String name;
     private PizzaType (String name) {
         this.name = name;
     }

@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 public class VirtualTrattoria {
 
@@ -9,6 +10,7 @@ public class VirtualTrattoria {
         String doYouAlterIngredients;
         String clientIngredientChoice;
         Ingredients[] availableIngredients = {Ingredients.TOMATOSAUCE, Ingredients.CHEESE, Ingredients.MOZZARELLA,Ingredients.MUSHROOM, Ingredients.HAM, Ingredients.PROSCIUTTO};
+        HashMap<Pizza,Clients> userOrder = new HashMap<>();
 
 // Adding client + presenting Menu
         System.out.println("Hi, what's your name?");
@@ -19,17 +21,20 @@ public class VirtualTrattoria {
         System.out.println(PizzaType.CAPRICIOSA + " (Tomato sauce, Cheese, Ham, Mushrooms)");
         System.out.println(PizzaType.CALZONE + " (Tomato sauce, Mozzarella, Prosciutto)");
 
-// creating pizza object + adding basic ingredients for selected pizza
-        Pizza pizza = new Pizza();
-
         clientPizzaChoice = scanner.nextLine().toLowerCase();
 
         if (clientPizzaChoice.equals(PizzaType.CAPRICIOSA.name)){
+            Pizza pizza = new Pizza(PizzaType.CAPRICIOSA);
             pizza.addCapriciosaIngredients();
+            userOrder.put(pizza,newClient);
         } else if (clientPizzaChoice.equals(PizzaType.MARGHERITA.name)){
+            Pizza pizza = new Pizza(PizzaType.MARGHERITA);
             pizza.addMargheritaIngredients();
+            userOrder.put(pizza,newClient);
         } else if (clientPizzaChoice.equals(PizzaType.CALZONE.name)) {
+            Pizza pizza = new Pizza(PizzaType.CALZONE);
             pizza.addCalzoneIngredients();
+            userOrder.put(pizza,newClient);
         } else {
             System.out.println("We don't have such pizza");
             System.exit(0);
@@ -68,8 +73,9 @@ public class VirtualTrattoria {
             System.out.println("Do you want to change something else");
             doYouAlterIngredients = scanner.nextLine();
         }
+        System.out.println("Would you like to order another pizza");
 
-        System.out.println("Your order is completed: " + clientPizzaChoice + " it contains: " + pizza.pizzaIngredients);
+        System.out.println("Your order is completed: " + userOrder + " it contains: " + pizza.pizzaIngredients);
 
     }
 }
