@@ -1,28 +1,11 @@
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Scanner;
 
-public class Pizza {
+public interface Pizza {
+    Ingredients[] availableIngredients = {Ingredients.TOMATOSAUCE, Ingredients.CHEESE, Ingredients.MOZZARELLA,Ingredients.MUSHROOM, Ingredients.HAM, Ingredients.PROSCIUTTO};
     LinkedList<Ingredients> pizzaIngredients = new LinkedList<>();
 
-    Pizza(PizzaType pizzaType){
-
-    }
 
 
-    public void addMargheritaIngredients() {
-        pizzaIngredients.add(Ingredients.TOMATOSAUCE);
-        pizzaIngredients.add(Ingredients.CHEESE);
-    }
-
-    public void addCapriciosaIngredients() {
-        pizzaIngredients.add(Ingredients.TOMATOSAUCE);
-        pizzaIngredients.add(Ingredients.CHEESE);
-        pizzaIngredients.add(Ingredients.HAM);
-        pizzaIngredients.add(Ingredients.MUSHROOM);
-    }
-
-    public void addCalzoneIngredients() {
-        pizzaIngredients.add(Ingredients.TOMATOSAUCE);
-        pizzaIngredients.add(Ingredients.MOZZARELLA);
-        pizzaIngredients.add(Ingredients.PROSCIUTTO);
-    }
 }
