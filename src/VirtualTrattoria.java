@@ -6,10 +6,6 @@ public class VirtualTrattoria {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        String clientPizzaChoice;
-        String doYouAlterIngredients;
-        String clientIngredientChoice;
-        Ingredients[] availableIngredients = {Ingredients.TOMATOSAUCE, Ingredients.CHEESE, Ingredients.MOZZARELLA,Ingredients.MUSHROOM, Ingredients.HAM, Ingredients.PROSCIUTTO};
         HashMap<Clients,Pizza> userOrder = new HashMap<>();
 
 // Adding client + presenting Menu
@@ -20,37 +16,7 @@ public class VirtualTrattoria {
         System.out.println(PizzaName.CAPRICIOSA + " (Tomato sauce, Cheese, Ham, Mushrooms)");
         System.out.println(PizzaName.CALZONE + " (Tomato sauce, Mozzarella, Prosciutto)");
 
-        System.out.println("What pizza would you like to eat?");
-        clientPizzaChoice = scanner.nextLine().toLowerCase();
-
-        if (clientPizzaChoice.equals(PizzaName.CAPRICIOSA.name)){
-            Pizza pizza = new Capriciosa(PizzaName.CAPRICIOSA);
-            System.out.println("ur pizza has " + pizza.pizzaIngredients);
-            userOrder.put(newClient,pizza);
-
-            doYouAlterPizzaIngredients(pizza);
-
-        } else if (clientPizzaChoice.equals(PizzaName.MARGHERITA.name)){
-            Pizza pizza = new Margherita(PizzaName.MARGHERITA);
-            System.out.println("ur pizza has " + pizza.pizzaIngredients);
-            userOrder.put(newClient,pizza);
-            doYouAlterPizzaIngredients(pizza);
-        } else if (clientPizzaChoice.equals(PizzaName.CALZONE.name)) {
-            Pizza pizza = new Calzone(PizzaName.CALZONE);
-            System.out.println("ur pizza has " + pizza.pizzaIngredients);
-            userOrder.put(newClient,pizza);
-            doYouAlterPizzaIngredients(pizza);
-        } else {
-            System.out.println("We don't have such pizza");
-        }
-
-        System.out.println("Is that all?");
-        String isThatAll = scanner.nextLine();
-        if (isThatAll.equals("yes")) {
-            System.out.println("Your order is completed: " + newClient.name + " it contains: " + Pizza.pizzaIngredients);
-        } else {
-            System.out.println("else");
-        }
+        whatPizzaWouldYouLikeToEat();
 
     }
     public static void doYouAlterPizzaIngredients(Pizza pizza) {
@@ -90,6 +56,40 @@ public class VirtualTrattoria {
             }
             System.out.println("Do you want to change something else");
             doYouAlterIngredients = scanner.nextLine();
+        }
+    }
+    public static void whatPizzaWouldYouLikeToEat() {
+        System.out.println("What pizza would you like to eat?");
+        String clientPizzaChoice;
+        Scanner scanner = new Scanner(System.in);
+        clientPizzaChoice = scanner.nextLine().toLowerCase();
+
+        if (clientPizzaChoice.equals(PizzaName.CAPRICIOSA.name)){
+            Pizza pizza = new Capriciosa(PizzaName.CAPRICIOSA);
+            System.out.println("ur pizza has " + pizza.pizzaIngredients);
+            doYouAlterPizzaIngredients(pizza);
+
+        } else if (clientPizzaChoice.equals(PizzaName.MARGHERITA.name)){
+            Pizza pizza = new Margherita(PizzaName.MARGHERITA);
+            System.out.println("ur pizza has " + pizza.pizzaIngredients);
+            doYouAlterPizzaIngredients(pizza);
+
+        } else if (clientPizzaChoice.equals(PizzaName.CALZONE.name)) {
+            Pizza pizza = new Calzone(PizzaName.CALZONE);
+            System.out.println("ur pizza has " + pizza.pizzaIngredients);
+            doYouAlterPizzaIngredients(pizza);
+
+        } else {
+            System.out.println("We don't have such pizza");
+        }
+            Pizza.pizzaIngredients.clear();
+
+        System.out.println("Is that all?");
+        String isThatAll = scanner.nextLine();
+        if (isThatAll.equals("yes")) {
+            System.out.println("Your order is completed: " + Pizza.pizzaIngredients);
+        } else {
+            whatPizzaWouldYouLikeToEat();
         }
     }
 }
