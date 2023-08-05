@@ -4,7 +4,7 @@ public enum PizzaName {
     CALZONE("calzone");
 
     final String name;
-    private PizzaName(String name) {
+    PizzaName(String name) {
         this.name = name;
     }
 }

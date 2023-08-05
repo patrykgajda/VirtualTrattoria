@@ -15,41 +15,42 @@ public class VirtualTrattoria {
 // Adding client + presenting Menu
         System.out.println("Hi, what's your name?");
         Clients newClient = new Clients(scanner.nextLine());
-        System.out.println("What pizza would you like to eat?");
-        System.out.println("Those are available:");
+        System.out.println("Here is our menu:");
         System.out.println(PizzaName.MARGHERITA + " (Tomato sauce, Cheese)");
         System.out.println(PizzaName.CAPRICIOSA + " (Tomato sauce, Cheese, Ham, Mushrooms)");
         System.out.println(PizzaName.CALZONE + " (Tomato sauce, Mozzarella, Prosciutto)");
 
+        System.out.println("What pizza would you like to eat?");
         clientPizzaChoice = scanner.nextLine().toLowerCase();
 
         if (clientPizzaChoice.equals(PizzaName.CAPRICIOSA.name)){
             Pizza pizza = new Capriciosa(PizzaName.CAPRICIOSA);
-
-
+            System.out.println("ur pizza has " + pizza.pizzaIngredients);
             userOrder.put(newClient,pizza);
 
             doYouAlterPizzaIngredients(pizza);
 
-            System.out.println("Your order is completed: " + userOrder + " it contains: " + Pizza.pizzaIngredients);
-//        } else if (clientPizzaChoice.equals(PizzaType.MARGHERITA.name)){
-//            Pizza pizza = new Pizza(PizzaType.MARGHERITA);
-//            pizza.addMargheritaIngredients();
-//            userOrder.put(pizza,newClient);
-//            pizza.doYouAlterPizzaIngredients();
-//        } else if (clientPizzaChoice.equals(PizzaType.CALZONE.name)) {
-//            Pizza pizza = new Pizza(PizzaType.CALZONE);
-//            pizza.addCalzoneIngredients();
-//            userOrder.put(pizza,newClient);
-//            pizza.doYouAlterPizzaIngredients();
+        } else if (clientPizzaChoice.equals(PizzaName.MARGHERITA.name)){
+            Pizza pizza = new Margherita(PizzaName.MARGHERITA);
+            System.out.println("ur pizza has " + pizza.pizzaIngredients);
+            userOrder.put(newClient,pizza);
+            doYouAlterPizzaIngredients(pizza);
+        } else if (clientPizzaChoice.equals(PizzaName.CALZONE.name)) {
+            Pizza pizza = new Calzone(PizzaName.CALZONE);
+            System.out.println("ur pizza has " + pizza.pizzaIngredients);
+            userOrder.put(newClient,pizza);
+            doYouAlterPizzaIngredients(pizza);
         } else {
             System.out.println("We don't have such pizza");
-            System.exit(0);
         }
 
-        System.out.println("Would you like to order another pizza");
-
-        System.out.println("Your order is completed: " + newClient.name + " it contains: " + Pizza.pizzaIngredients);
+        System.out.println("Is that all?");
+        String isThatAll = scanner.nextLine();
+        if (isThatAll.equals("yes")) {
+            System.out.println("Your order is completed: " + newClient.name + " it contains: " + Pizza.pizzaIngredients);
+        } else {
+            System.out.println("else");
+        }
 
     }
     public static void doYouAlterPizzaIngredients(Pizza pizza) {
@@ -69,7 +70,7 @@ public class VirtualTrattoria {
                 clientIngredientChoice = scanner.nextLine().toLowerCase();
 
                 for (Ingredients availableIngredient : Pizza.availableIngredients) {
-                    if (availableIngredient.name.toLowerCase().equals(clientIngredientChoice)) {
+                    if (availableIngredient.name.equals(clientIngredientChoice)) {
                         Pizza.pizzaIngredients.add(availableIngredient);
                     }
                 }
@@ -78,12 +79,14 @@ public class VirtualTrattoria {
 
                 System.out.println("What should we remove?");
                 clientIngredientChoice = scanner.nextLine().toLowerCase();
-
+                Ingredients ingredientToBeRemoved = null;
                 for (Ingredients availableIngredient : Pizza.pizzaIngredients) {
-                    if (availableIngredient.name.toLowerCase().equals(clientIngredientChoice)) {
-                        Pizza.pizzaIngredients.remove(availableIngredient);
+
+                    if (availableIngredient.name.equals(clientIngredientChoice)) {
+                        ingredientToBeRemoved=availableIngredient;
                     }
                 }
+                Pizza.pizzaIngredients.remove(ingredientToBeRemoved);
             }
             System.out.println("Do you want to change something else");
             doYouAlterIngredients = scanner.nextLine();

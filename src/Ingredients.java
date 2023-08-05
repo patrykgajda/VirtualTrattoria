@@ -3,7 +3,7 @@ public enum Ingredients {
     TOMATOSAUCE ("tomato sauce"),
     CHEESE ("cheese"),
     HAM ("ham"),
-    MUSHROOM ("mushrooms"),
+    MUSHROOM ("mushroom"),
     PROSCIUTTO("prosciutto"),
     MOZZARELLA("mozzarella");
 

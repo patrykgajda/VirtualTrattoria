@@ -1,9 +1,8 @@
-//public class Calzone extends Pizza{
-//
-//    Calzone(PizzaName pizzaName) {
-//        super(PizzaName.CALZONE);
-//        pizzaIngredients.add(Ingredients.TOMATOSAUCE);
-//        pizzaIngredients.add(Ingredients.MOZZARELLA);
-//        pizzaIngredients.add(Ingredients.PROSCIUTTO);
-//    }
-//}
+public class Calzone implements Pizza{
+
+    Calzone(PizzaName pizzaName) {
+        pizzaIngredients.add(Ingredients.TOMATOSAUCE);
+        pizzaIngredients.add(Ingredients.MOZZARELLA);
+        pizzaIngredients.add(Ingredients.PROSCIUTTO);
+    }
+}
