@@ -4,9 +4,10 @@ public class Pizza {
     Ingredients[] availableIngredients = {Ingredients.TOMATOSAUCE, Ingredients.CHEESE, Ingredients.MOZZARELLA,Ingredients.MUSHROOM, Ingredients.HAM, Ingredients.PROSCIUTTO};
     LinkedList<Ingredients> pizzaIngredients = new LinkedList<>();
     PizzaName pizzaName;
-
+    String pizzaa;
     Pizza(PizzaName pizzaName){
         this.pizzaName=pizzaName;
+
     }
 
     public void addCapriciosaIngredients(){
