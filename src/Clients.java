@@ -1,8 +1,10 @@
 public class Clients {
-
-    String name;
+    private String name;
     public Clients(String name) {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
 }

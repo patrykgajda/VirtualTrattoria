@@ -7,13 +7,9 @@ public enum Ingredients {
     PROSCIUTTO("prosciutto"),
     MOZZARELLA("mozzarella");
 
-
-
     final String name;
 
     Ingredients (String name) {
         this.name = name;
     }
-
-
 }
