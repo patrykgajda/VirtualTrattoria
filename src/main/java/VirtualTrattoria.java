@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class VirtualTrattoria {
 
@@ -12,9 +14,15 @@ public class VirtualTrattoria {
         Menu menu = new Menu();
         menu.showMenu();
 
-        clientOrder.addPizzaToClientOrderList();
+        ArrayList<Pizza> pizzaListOrderedByClient = clientOrder.pizzaListOrderedByClient();
+
+        try {
+            CreateCSVFile.createNewCSVFile("saveDataToCSVFile.csv", newClient, pizzaListOrderedByClient);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         System.out.println("Client " + newClient.getName() + " ordered:");
-        clientOrder.clientOrderSummary();
+        ClientOrderSummary.clientOrderSummary(pizzaListOrderedByClient);
     }
 }

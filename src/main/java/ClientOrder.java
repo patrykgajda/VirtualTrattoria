@@ -9,18 +9,14 @@ public class ClientOrder {
     private String clientIngredientChoice;
     private ArrayList<Pizza> orderedPizzaList = new ArrayList<>();
 
-    public void addPizzaToClientOrderList(){
+    public ArrayList<Pizza> pizzaListOrderedByClient(){
         String addAnotherPizza;
         do {
             orderedPizzaList.add(setClientPizzaChoice());
             System.out.println("Would you like to add another pizza to your order [yes]");
             addAnotherPizza = scanner.nextLine().toLowerCase();
         } while (addAnotherPizza.equals("yes"));
-    }
-    public void clientOrderSummary(){
-        for (Pizza orderedPizza : orderedPizzaList) {
-            System.out.println(orderedPizza.getPizzaName() + " " + orderedPizza.pizzaIngredients);
-        }
+        return orderedPizzaList;
     }
     private Pizza setClientPizzaChoice() {
         do  {
