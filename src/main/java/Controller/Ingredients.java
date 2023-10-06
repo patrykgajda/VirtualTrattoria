@@ -1,3 +1,5 @@
+package Controller;
+
 public enum Ingredients {
 
     TOMATOSAUCE ("tomato sauce"),

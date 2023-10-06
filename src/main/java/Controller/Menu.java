@@ -1,3 +1,5 @@
+package Controller;
+
 public class Menu {
     public void showMenu() {
         System.out.println("Here is our menu:");

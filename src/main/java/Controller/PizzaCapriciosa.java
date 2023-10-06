@@ -1,3 +1,5 @@
+package Controller;
+
 public class PizzaCapriciosa extends Pizza {
     private final AvailablePizza availablePizza = AvailablePizza.CAPRICIOSA;
     PizzaCapriciosa() {
