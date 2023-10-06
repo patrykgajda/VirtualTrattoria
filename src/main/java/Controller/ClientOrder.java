@@ -1,3 +1,5 @@
+package Controller;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -57,10 +59,10 @@ public class ClientOrder {
         while (doYouAlterIngredients.equals("yes")) {
             System.out.println("Do you want to add or remove ingredient? [add/remove]");
             String addOrRemoveIngredients = scanner.nextLine();
-// adding Ingredients
+// adding Controller.Ingredients
             if (addOrRemoveIngredients.equals("add")) {
                 addIngredientToOrderedPizza(orderedPizza);
-// removing Ingredients
+// removing Controller.Ingredients
             } else if (addOrRemoveIngredients.equals("remove")) {
                 removeIngredientFromOrderedPizza(orderedPizza);
             }
