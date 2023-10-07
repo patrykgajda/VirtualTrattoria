@@ -5,6 +5,12 @@ public class PizzaModel {
     private String pizzaName;
     private String pizzaIngredients;
 
+    public PizzaModel(int pizzaNo, String pizzaName, String pizzaIngredients) {
+        this.pizzaNo = pizzaNo;
+        this.pizzaName = pizzaName;
+        this.pizzaIngredients = pizzaIngredients;
+    }
+
     public int getPizzaNo() {
         return pizzaNo;
     }

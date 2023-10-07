@@ -1,7 +1,11 @@
 import Controller.*;
+import DAO.PizzaModelDao;
+import DAO.PizzaModelDaoImpl;
 import Model.ClientModel;
 import Model.ClientOrderModel;
+import Model.PizzaModel;
 import View.ClientOrderView;
+import View.PizzaView;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -19,6 +23,10 @@ public class VirtualTrattoria {
 
         ClientModel clientModel = retrieveDummyClientModelData();
         ClientController clientController = new ClientController(clientModel);
+
+        PizzaView pizzaView = new PizzaView();
+        PizzaController pizzaController = new PizzaController(pizzaView);
+        pizzaController.updateShowPizzaMenu();
 
 // Adding client and his order + presenting Controller.Menu
         System.out.println("Hi, what's your name?");
