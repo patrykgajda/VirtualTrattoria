@@ -1,24 +1,33 @@
 package Controller;
 
 import Model.ClientModel;
+import Service.AddClientModelService;
+import Service.AddClientModelServiceImpl;
+import View.AddClientView;
 
 public class ClientController {
-    private static int countClients = 0;
+    private AddClientModelService addClientModelService = new AddClientModelServiceImpl();
     private ClientModel client;
-    public ClientController(ClientModel client) {
-        ++countClients;
-        client.setClientNo(countClients);
-        this.client = client;
+    private AddClientView addClientView;
+
+    public ClientController(AddClientView addClientView) {
+        this.addClientView = addClientView;
+    }
+
+    public void addClientModel() {
+        addClientView.printWhatsYourName();
+        addClientModelService.addClientModel();
+        addClientView.printCreatedClientData(addClientModelService.getLastInsertedClientNo());
     }
 
     public String getClientName() {
         return client.getClientName();
     }
+
     public void setClientName(String clientName) {
         client.setClientName(clientName);
     }
     public int getClientNo() {
         return client.getClientNo();
     }
-//    public void setClientNo() // should I go with classic setter or put countClients
 }

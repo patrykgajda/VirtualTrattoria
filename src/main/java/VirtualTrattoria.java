@@ -4,6 +4,7 @@ import DAO.PizzaModelDaoImpl;
 import Model.ClientModel;
 import Model.ClientOrderModel;
 import Model.PizzaModel;
+import View.AddClientView;
 import View.ClientOrderView;
 import View.PizzaView;
 
@@ -14,50 +15,28 @@ public class VirtualTrattoria {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        AddClientView addClientView = new AddClientView();
+        ClientController clientController = new ClientController(addClientView);
+        clientController.addClientModel();
+        clientController.addClientModel();
+        clientController.addClientModel();
 
-        ClientOrderModel model = retrieveDummyClientOrderModelData();
-        ClientOrderView view = new ClientOrderView();
-        ClientOrderController ClientOrdercontroller = new ClientOrderController(model,view);
-        ClientOrdercontroller.showCurrentView();
-
-        ClientModel clientModel = retrieveDummyClientModelData();
-        ClientController clientController = new ClientController(clientModel);
-
+        System.out.println("Here is our Menu: ");
         PizzaView pizzaView = new PizzaView();
         PizzaController pizzaController = new PizzaController(pizzaView);
         pizzaController.updateShowPizzaMenu();
 
-// Adding client and his order + presenting Controller.Menu
-        System.out.println("Hi, what's your name?");
-        ClientOrder clientOrder = new ClientOrder();
-        Menu menu = new Menu();
-        menu.showMenu();
 
-        ArrayList<Pizza> pizzaListOrderedByClient = clientOrder.pizzaListOrderedByClient();
-
-        try {
-            CreateCSVFile.createNewCSVFile("clientOrder.csv", clientController, pizzaListOrderedByClient);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        System.out.println("Client " + clientController.getClientName() + " ordered:");
-        ClientOrderSummary.clientOrderSummary(pizzaListOrderedByClient);
-    }
-
-    private static ClientOrderModel retrieveDummyClientOrderModelData() {
-        ClientOrderModel model = new ClientOrderModel();
-        model.setClientNo(1);
-        model.setClientName("Patryk");
-        model.setOrderedPizzaName("Calzone");
-        model.setPizzaIngredientsAfterAltering("Tomato Sauce, Cheese, Demo");
-        return model;
-    }
-    private static ClientModel retrieveDummyClientModelData() {
-        ClientModel model = new ClientModel();
-        model.setClientNo(1);
-        model.setClientName("Patryk");
-        return model;
+// before MVC
+//        ArrayList<Pizza> pizzaListOrderedByClient = clientOrder.pizzaListOrderedByClient();
+//
+//        try {
+//            CreateCSVFile.createNewCSVFile("clientOrder.csv", clientController, pizzaListOrderedByClient);
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        System.out.println("Client " + clientController.getClientName() + " ordered:");
+//        ClientOrderSummary.clientOrderSummary(pizzaListOrderedByClient);
     }
 }
