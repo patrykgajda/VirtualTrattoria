@@ -2,7 +2,6 @@ package Service;
 
 import DAO.ClientModelDao;
 import DAO.ClientModelDaoImpl;
-import Model.ClientModel;
 
 import java.util.Scanner;
 
@@ -27,7 +26,6 @@ public class AddClientModelServiceImpl implements AddClientModelService{
         return maxClientNo + 1;
     }
     private String setClientModelName(){
-//        System.out.println("What's your name: ");
         return scanner.nextLine();
     }
 }

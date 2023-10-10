@@ -1,6 +1,5 @@
 package DAO;
 
-import Controller.Ingredients;
 import Model.PizzaModel;
 
 import java.util.ArrayList;

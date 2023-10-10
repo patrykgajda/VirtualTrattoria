@@ -5,16 +5,17 @@ import Model.ClientModel;
 import java.util.ArrayList;
 
 public class ClientModelDaoImpl implements ClientModelDao {
+    // List is as database - will try with excel s/s
     private ArrayList<ClientModel> clientModelArrayList;
     private ClientModel clientModel = new ClientModel();
 
     public ClientModelDaoImpl() {
         clientModelArrayList = new ArrayList<>();
 //        commented to make list null
-//        ClientModel patryk = new ClientModel();
-//        patryk.setClientNo(1);
-//        patryk.setClientName("Patryk");
-//        clientModelArrayList.add(patryk);
+        ClientModel patryk = new ClientModel();
+        patryk.setClientNo(1);
+        patryk.setClientName("Patryk");
+        clientModelArrayList.add(patryk);
     }
 
     @Override
@@ -28,10 +29,12 @@ public class ClientModelDaoImpl implements ClientModelDao {
         clientModel.setClientName(clientModelName);
         clientModelArrayList.add(clientModel);
     }
-
-    // is this one below ok? or there shouldn't be such methods in DAO
     @Override
     public int getLastInsertedClientNo() {
         return clientModelArrayList.get(clientModelArrayList.size()-1).getClientNo();
+    }
+    @Override
+    public ClientModel getClientModel(int clientNo) {
+        return clientModelArrayList.get(clientNo);
     }
 }

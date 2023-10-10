@@ -4,6 +4,10 @@ import Model.ClientOrderModel;
 import View.ClientOrderView;
 
 public class ClientOrderController {
+    // not in use yet
+    // created before DAO
+    // can I skip Service and connect Controller with DAO directly?
+    // e.g. for getClientName
     private ClientOrderModel model;
     private ClientOrderView view;
 
