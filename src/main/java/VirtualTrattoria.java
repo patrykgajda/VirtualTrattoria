@@ -1,42 +1,25 @@
 import Controller.*;
-import DAO.PizzaModelDao;
-import DAO.PizzaModelDaoImpl;
-import Model.ClientModel;
-import Model.ClientOrderModel;
-import Model.PizzaModel;
 import View.AddClientView;
-import View.ClientOrderView;
+import View.GetClientView;
 import View.PizzaView;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
 public class VirtualTrattoria {
 
     public static void main(String[] args) {
 
         AddClientView addClientView = new AddClientView();
-        ClientController clientController = new ClientController(addClientView);
+        GetClientView getClientView = new GetClientView();
+        ClientController clientController = new ClientController(addClientView, getClientView);
+
+        // I have to change something in Service, because now Get/AddClientModelService both create new ClientModelDaoImpl();
+        // it reset my ArrayList which is my DB now
         clientController.addClientModel();
-        clientController.addClientModel();
-        clientController.addClientModel();
+        clientController.getClientModel();
 
         System.out.println("Here is our Menu: ");
         PizzaView pizzaView = new PizzaView();
         PizzaController pizzaController = new PizzaController(pizzaView);
         pizzaController.updateShowPizzaMenu();
 
-
-// before MVC
-//        ArrayList<Pizza> pizzaListOrderedByClient = clientOrder.pizzaListOrderedByClient();
-//
-//        try {
-//            CreateCSVFile.createNewCSVFile("clientOrder.csv", clientController, pizzaListOrderedByClient);
-//        } catch (FileNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        System.out.println("Client " + clientController.getClientName() + " ordered:");
-//        ClientOrderSummary.clientOrderSummary(pizzaListOrderedByClient);
     }
 }
