@@ -1,25 +1,44 @@
 import Controller.*;
-import View.AddClientView;
-import View.GetClientView;
-import View.PizzaView;
+import Service.ClientService;
+import Service.ClientServiceImpl;
+
 
 public class VirtualTrattoria {
 
     public static void main(String[] args) {
 
-        AddClientView addClientView = new AddClientView();
-        GetClientView getClientView = new GetClientView();
-        ClientController clientController = new ClientController(addClientView, getClientView);
+        // couldn't figure out how can I fix list reset
+        ClientService clientService = new ClientServiceImpl();
 
-        // I have to change something in Service, because now Get/AddClientModelService both create new ClientModelDaoImpl();
-        // it reset my ArrayList which is my DB now
-        clientController.addClientModel();
-        clientController.getClientModel();
+        ClientController clientController = new ClientController();
+        clientController.setClientService(clientService); // couldn't figure out how can I fix list reset
+
+
+        clientController.addClient();
+        clientController.getAllClients();
+        System.out.println();
+
+//        clientController.addClient();
+//        clientController.getAllClients();
+//        System.out.println();
+//
+//        clientController.addClient();
+//        clientController.getAllClients();
+//        System.out.println();
+//
+//        clientController.addClient();
+//        clientController.getAllClients();
+//        System.out.println();
 
         System.out.println("Here is our Menu: ");
-        PizzaView pizzaView = new PizzaView();
-        PizzaController pizzaController = new PizzaController(pizzaView);
+        PizzaController pizzaController = new PizzaController();
         pizzaController.updateShowPizzaMenu();
+        pizzaController.printAvailableIngredients();
 
+        ClientOrderController clientOrderController = new ClientOrderController();
+        clientOrderController.setClientService(clientService); // couldn't figure out how can I fix list reset
+        clientOrderController.addClientOrder();
+        clientOrderController.addClientOrder();
+        clientOrderController.addClientOrder();
     }
 }

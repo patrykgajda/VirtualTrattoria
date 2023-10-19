@@ -2,12 +2,12 @@ package Model;
 // to make sure:
 // if this is Model - it should retrieve and store the state of the model in a database.
 // can I create Pizza type or list? - I think no because I can't add Pizza type to DB, so I can use only those available in DB
-public class ClientOrderModel {
+public class ClientOrder {
     private int clientOrderNo;
     private int clientNo;
     private String clientName;
     private String orderedPizzaName;
-    private String pizzaIngredientsAfterAltering;
+    private String pizzaIngredients;
 
     public int getClientOrderNo(){
         return clientOrderNo;
@@ -31,19 +31,18 @@ public class ClientOrderModel {
         this.clientName = clientName;
     }
 
-    public String getOrderedPizzaName() {
+    public String getPizzaName() {
         return orderedPizzaName;
     }
 
-    public void setOrderedPizzaName(String orderedPizzaName) {
+    public void setPizzaName(String orderedPizzaName) {
         this.orderedPizzaName = orderedPizzaName;
     }
 
-    public String getPizzaIngredientsAfterAltering() {
-        return pizzaIngredientsAfterAltering;
+    public String getPizzaIngredients() {
+        return pizzaIngredients;
     }
-
-    public void setPizzaIngredientsAfterAltering(String pizzaIngredientsAfterAltering) {
-        this.pizzaIngredientsAfterAltering = pizzaIngredientsAfterAltering;
+    public void setPizzaIngredients(String pizzaIngredientsAfterAltering) {
+        this.pizzaIngredients = pizzaIngredientsAfterAltering;
     }
 }

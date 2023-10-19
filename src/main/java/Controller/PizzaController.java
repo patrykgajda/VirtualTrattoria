@@ -1,25 +1,22 @@
 package Controller;
 
-import Model.PizzaModel;
-import Service.PizzaMenuService;
-import Service.PizzaMenuServiceImpl;
+import Model.Pizza;
+import Service.*;
 import View.PizzaView;
-
 public class PizzaController {
-
-    private PizzaMenuService pizzaMenuService = new PizzaMenuServiceImpl();
-    private PizzaView pizzaView;
-
-    public PizzaController(PizzaView pizzaView) {
-        this.pizzaView = pizzaView;
-    }
+    private final PizzaMenuService pizzaMenuService = new PizzaMenuServiceImpl();
+    private final IngredientsService ingredientsService = new IngredientsServiceImpl();
+    private final PizzaView pizzaView = new PizzaView();
 
     public PizzaMenuService getPizzaMenuService() {
         return pizzaMenuService;
     }
     public void updateShowPizzaMenu() {
-        for (PizzaModel pizzaModel : getPizzaMenuService().getAllPizza()){
-            pizzaView.showPizzaMenu(pizzaModel.getPizzaNo(), pizzaModel.getPizzaName(), pizzaModel.getPizzaIngredients());
+        for (Pizza pizza : getPizzaMenuService().getAllPizza()){
+            pizzaView.printPizzaMenu(pizza.getPizzaNo(), pizza.getPizzaName(), pizza.getPizzaIngredients());
         }
+    }
+    public void printAvailableIngredients() {
+        pizzaView.printAvailableIngredients(ingredientsService.getAllIngredientsNamesArrayList());
     }
 }

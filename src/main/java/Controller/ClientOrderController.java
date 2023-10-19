@@ -1,52 +1,78 @@
 package Controller;
 
-import Model.ClientOrderModel;
+import Model.ClientOrder;
+import Service.*;
 import View.ClientOrderView;
+import View.GetClientView;
+
+import java.util.Scanner;
 
 public class ClientOrderController {
-    // not in use yet
-    // created before DAO
-    // can I skip Service and connect Controller with DAO directly?
-    // e.g. for getClientName
-    private ClientOrderModel model;
-    private ClientOrderView view;
+    Scanner scanner = new Scanner(System.in);
+    private ClientService clientService = new ClientServiceImpl();
+    private final ClientOrderService clientOrderService = new ClientOrderServiceImpl();
+    private final PizzaService pizzaService = new PizzaServiceImpl();
+    private final GetClientView getClientView = new GetClientView();
+    private final ClientOrderView clientOrderView = new ClientOrderView();
+    private int clientNo;
 
-    public ClientOrderController(ClientOrderModel model, ClientOrderView view) {
-        this.model = model;
-        this.view = view;
+    // couldn't figure out how can I fix list reset
+    public void setClientService(ClientService clientService){
+        this.clientService = clientService;
     }
-    public int getClientNo() {
-        return model.getClientNo();
+    public void addClientOrder(){
+        clientOrderService.setClientService(clientService); // couldn't figure out how can I fix list reset
+        getClientView.printWhatIsYourNumber();
+        clientNo = scanner.nextInt();
+        // how does try - catch work I tried to use it here but it saves data and it block 2nd use of AddClientOrder
+        if (clientOrderService.clientNoValidation(clientNo)) {
+            addClientOrderPizza();
+        } else {
+            clientOrderView.printSelectedIncorrectClientNo();
+            addClientOrder();
+        }
     }
-
-    public void setClientNo(int clientNo) {
-        model.setClientNo(clientNo);
+    private void addClientOrderPizza() {
+        getClientView.printWhatIsYourPizzaChoice();
+        int pizzaNo = scanner.nextInt();
+        scanner.nextLine(); // adding to reset scanner.nextInt
+        if (clientOrderService.pizzaChoiceValidation(pizzaNo)) {
+            clientOrderService.addClientOrder(clientService.getClient(clientNo).getClientNo(), clientService.getClient(clientNo).getClientName(), pizzaService.getPizzaName(pizzaNo), pizzaService.getPizzaIngredients(pizzaNo));
+            updateClientOrder();
+        } else {
+            clientOrderView.printSelectedIncorrectPizzaNo();
+            addClientOrderPizza();
+        }
     }
-
-    public String getClientName() {
-        return model.getClientName();
+    private void updateClientOrder(){
+        String decision;
+        do {
+            clientOrderView.printWhatIsNextDecision();
+            decision = scanner.nextLine();
+            if (decision.equalsIgnoreCase("new")) {
+                updateClientOrderPizza();
+            } else if (decision.equalsIgnoreCase("add") || decision.equalsIgnoreCase("remove")) {
+                clientOrderView.printSelectIngredient(decision);
+                String ingredient = scanner.nextLine().toLowerCase();
+                if (clientOrderService.initUpdateClientOrderPizzaIngredients(decision,ingredient)) {
+                    clientOrderService.updateClientOrderPizzaIngredients(decision, ingredient);
+                } else clientOrderView.printIncorrectIngredient();
+            }
+        } while (!decision.equalsIgnoreCase("finish"));
+        clientOrderView.printInitClientOrderView(clientOrderService.getClientName());
+        for (ClientOrder clientOrder : clientOrderService.getClientOrder()) {
+            clientOrderView.printClientOrderView(clientOrder.getPizzaName(), clientOrder.getPizzaIngredients());
+        }
     }
-
-    public void setClientName(String clientName) {
-        model.setClientName(clientName);
-    }
-
-    public String getPizzaName() {
-        return model.getOrderedPizzaName();
-    }
-
-    public void setPizzaName(String pizzaName) {
-        model.setOrderedPizzaName(pizzaName);
-    }
-
-    public String getPizzaIngredients() {
-        return model.getPizzaIngredientsAfterAltering();
-    }
-
-    public void setPizzaIngredients(String pizzaIngredients) {
-        model.setPizzaIngredientsAfterAltering(pizzaIngredients);
-    }
-    public void showCurrentView(){
-        view.printClientOrderView(model.getClientNo(),model.getClientName(),model.getOrderedPizzaName(),model.getPizzaIngredientsAfterAltering());
+    private void updateClientOrderPizza() {
+        getClientView.printWhatIsYourPizzaChoice();
+        int pizzaNo = scanner.nextInt();
+        scanner.nextLine(); // adding to reset scanner.nextInt
+        if (clientOrderService.pizzaChoiceValidation(pizzaNo)) {
+            clientOrderService.addPizzaToCurrentClientOrder(clientService.getClient(clientNo).getClientNo(), clientService.getClient(clientNo).getClientName(), pizzaService.getPizzaName(pizzaNo), pizzaService.getPizzaIngredients(pizzaNo));
+        } else {
+            clientOrderView.printSelectedIncorrectPizzaNo();
+            updateClientOrderPizza();
+        }
     }
 }

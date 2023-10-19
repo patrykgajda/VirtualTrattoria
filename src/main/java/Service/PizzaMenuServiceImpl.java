@@ -1,16 +1,16 @@
 package Service;
 
-import DAO.PizzaModelDao;
-import DAO.PizzaModelDaoImpl;
-import Model.PizzaModel;
+import DAO.PizzaDao;
+import DAO.PizzaDaoImpl;
+import Model.Pizza;
 
 import java.util.ArrayList;
 
 public class PizzaMenuServiceImpl implements PizzaMenuService {
 
-    private PizzaModelDao pizzaModelDao = new PizzaModelDaoImpl();
+    private final PizzaDao pizzaDao = new PizzaDaoImpl();
     @Override
-    public ArrayList<PizzaModel> getAllPizza() {
-        return pizzaModelDao.getAllPizzas();
+    public ArrayList<Pizza> getAllPizza() {
+        return pizzaDao.getAllPizzas();
     }
 }
