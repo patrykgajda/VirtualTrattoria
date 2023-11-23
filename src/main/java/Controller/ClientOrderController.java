@@ -5,26 +5,38 @@ import Service.*;
 import View.ClientOrderView;
 import View.GetClientView;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ClientOrderController {
     Scanner scanner = new Scanner(System.in);
-    private ClientService clientService = new ClientServiceImpl();
+    private final ClientService clientService;
     private final ClientOrderService clientOrderService = new ClientOrderServiceImpl();
     private final PizzaService pizzaService = new PizzaServiceImpl();
     private final GetClientView getClientView = new GetClientView();
     private final ClientOrderView clientOrderView = new ClientOrderView();
     private int clientNo;
+    private int pizzaNo;
+    private boolean incorrectInput = true;
 
-    // couldn't figure out how can I fix list reset
-    public void setClientService(ClientService clientService){
+    public ClientOrderController(ClientService clientService) {
         this.clientService = clientService;
     }
+
     public void addClientOrder(){
-        clientOrderService.setClientService(clientService); // couldn't figure out how can I fix list reset
+        clientOrderService.setClientService(clientService);
         getClientView.printWhatIsYourNumber();
-        clientNo = scanner.nextInt();
-        // how does try - catch work I tried to use it here but it saves data and it block 2nd use of AddClientOrder
+        incorrectInput = true;
+        while(incorrectInput) {
+            try {
+                incorrectInput = false;
+                clientNo = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Incorrect value. Please enter a number");
+                scanner.next(); //scanner clear
+                incorrectInput = true;
+            }
+        }
         if (clientOrderService.clientNoValidation(clientNo)) {
             addClientOrderPizza();
         } else {
@@ -34,8 +46,7 @@ public class ClientOrderController {
     }
     private void addClientOrderPizza() {
         getClientView.printWhatIsYourPizzaChoice();
-        int pizzaNo = scanner.nextInt();
-        scanner.nextLine(); // adding to reset scanner.nextInt
+        pizzaNoIntCheck();
         if (clientOrderService.pizzaChoiceValidation(pizzaNo)) {
             clientOrderService.addClientOrder(clientService.getClient(clientNo).getClientNo(), clientService.getClient(clientNo).getClientName(), pizzaService.getPizzaName(pizzaNo), pizzaService.getPizzaIngredients(pizzaNo));
             updateClientOrder();
@@ -66,13 +77,26 @@ public class ClientOrderController {
     }
     private void updateClientOrderPizza() {
         getClientView.printWhatIsYourPizzaChoice();
-        int pizzaNo = scanner.nextInt();
-        scanner.nextLine(); // adding to reset scanner.nextInt
+        pizzaNoIntCheck();
         if (clientOrderService.pizzaChoiceValidation(pizzaNo)) {
             clientOrderService.addPizzaToCurrentClientOrder(clientService.getClient(clientNo).getClientNo(), clientService.getClient(clientNo).getClientName(), pizzaService.getPizzaName(pizzaNo), pizzaService.getPizzaIngredients(pizzaNo));
         } else {
             clientOrderView.printSelectedIncorrectPizzaNo();
             updateClientOrderPizza();
+        }
+    }
+    private void pizzaNoIntCheck() {
+        incorrectInput = true;
+        while (incorrectInput) {
+            try {
+                incorrectInput = false;
+                pizzaNo = scanner.nextInt();
+                scanner.nextLine(); //scanner clear - it was breaking UpdateClientOrder without this
+            } catch (InputMismatchException e) {
+                System.out.println("Incorrect value. Please enter a number");
+                scanner.next(); //scanner clear
+                incorrectInput = true;
+            }
         }
     }
 }

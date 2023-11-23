@@ -84,11 +84,6 @@ public class ClientOrderServiceImpl implements ClientOrderService{
     }
 
     @Override
-    public String getPizzaIngredients() {
-        return clientOrderDao.getPizzaIngredients();
-    }
-
-    @Override
     public boolean pizzaChoiceValidation(int pizzaNo) {
         for (int number : pizzaService.getAllPizzasNo()) {
             if (pizzaNo == number) return true;
@@ -127,6 +122,6 @@ public class ClientOrderServiceImpl implements ClientOrderService{
                 break;
             }
         }
-        clientOrderDao.setPizzaIngredients(pizzaIngredientsList.toString());
+        clientOrderDao.setPizzaIngredients(pizzaIngredientsList.toString().substring(1, pizzaIngredientsList.toString().length() - 1));
     }
 }

@@ -5,7 +5,6 @@ import Model.Client;
 import java.util.ArrayList;
 
 public class ClientDaoImpl implements ClientDao {
-    // List is as database - will try with excel s/s
     private final ArrayList<Client> clientArrayList;
     private final Client client = new Client();
 
@@ -32,6 +31,9 @@ public class ClientDaoImpl implements ClientDao {
     }
     @Override
     public int getLastInsertedClientNo() {
+        if (clientArrayList.isEmpty()) {
+            return 0;
+        }
         return clientArrayList.get(clientArrayList.size()-1).getClientNo();
     }
     @Override

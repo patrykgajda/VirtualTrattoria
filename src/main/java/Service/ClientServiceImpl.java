@@ -26,14 +26,12 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client getClient(int clientNo) {
-        // exception to be added
-        clientNo = clientNo - 1; // -1 because List starts with 0
-        return clientDao.getClient(clientNo);
+        return clientDao.getClient(clientNo - 1); // -1 because List starts with 0
     }
     @Override
     public void addClient(String clientName) {
         clientDao.setClientName(clientName);
-        clientDao.addClient(setMaxClientNo(), clientDao.getClientName());
+        clientDao.addClient(setNextClientNo(), clientDao.getClientName());
     }
     @Override
     public int getLastInsertedClientNo() {
@@ -45,11 +43,11 @@ public class ClientServiceImpl implements ClientService {
         return clientDao.getClientNo();
     }
 
-    private int setMaxClientNo(){
+    private int setNextClientNo(){
         if (clientDao.getAllClients().isEmpty()) {
             return 1;
         }
-        int maxClientNo = clientDao.getAllClients().get(clientDao.getAllClients().size()-1).getClientNo();
-        return maxClientNo + 1;
+        int nextClientNo = clientDao.getAllClients().get(clientDao.getAllClients().size()-1).getClientNo();
+        return nextClientNo + 1;
     }
 }

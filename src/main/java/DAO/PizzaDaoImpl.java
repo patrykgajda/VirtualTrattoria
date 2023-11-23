@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class PizzaDaoImpl implements PizzaDao {
 
-    // List is as database - will try with excel s/s
     private final ArrayList<Pizza> pizzaArrayList;
     public PizzaDaoImpl() {
         pizzaArrayList = new ArrayList<>();
@@ -25,12 +24,12 @@ public class PizzaDaoImpl implements PizzaDao {
 
     @Override
     public String getPizzaName(int pizzaNo) {
-        return pizzaArrayList.get(pizzaNo - 1).getPizzaName();
+        return pizzaArrayList.get(pizzaNo - 1).pizzaName();
     }
 
     @Override
     public String getPizzaIngredients(int pizzaNo) {
-        return pizzaArrayList.get(pizzaNo - 1).getPizzaIngredients();
+        return pizzaArrayList.get(pizzaNo - 1).pizzaIngredients();
     }
 
 }

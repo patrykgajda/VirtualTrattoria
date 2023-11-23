@@ -13,7 +13,7 @@ public class PizzaController {
     }
     public void updateShowPizzaMenu() {
         for (Pizza pizza : getPizzaMenuService().getAllPizza()){
-            pizzaView.printPizzaMenu(pizza.getPizzaNo(), pizza.getPizzaName(), pizza.getPizzaIngredients());
+            pizzaView.printPizzaMenu(pizza.pizzaNo(), pizza.pizzaName(), pizza.pizzaIngredients());
         }
     }
     public void printAvailableIngredients() {
