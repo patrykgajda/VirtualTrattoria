@@ -1,44 +1,25 @@
 import Controller.*;
-import Service.ClientService;
-import Service.ClientServiceImpl;
-
-
 public class VirtualTrattoria {
 
     public static void main(String[] args) {
 
-        // couldn't figure out how can I fix list reset
-        ClientService clientService = new ClientServiceImpl();
 
-        ClientController clientController = new ClientController();
-        clientController.setClientService(clientService); // couldn't figure out how can I fix list reset
+        MainController mainController = new MainController();
+        mainController.processClient();
 
+//        mainController.processClient();
+//        System.out.println();
 
-        clientController.addClient();
-        clientController.getAllClients();
-        System.out.println();
-
-//        clientController.addClient();
-//        clientController.getAllClients();
+//        mainController.processClient();
 //        System.out.println();
 //
-//        clientController.addClient();
-//        clientController.getAllClients();
-//        System.out.println();
-//
-//        clientController.addClient();
-//        clientController.getAllClients();
+//        mainController.processClient();
 //        System.out.println();
 
-        System.out.println("Here is our Menu: ");
-        PizzaController pizzaController = new PizzaController();
-        pizzaController.updateShowPizzaMenu();
-        pizzaController.printAvailableIngredients();
+        mainController.showPizzaMenu();
 
-        ClientOrderController clientOrderController = new ClientOrderController();
-        clientOrderController.setClientService(clientService); // couldn't figure out how can I fix list reset
-        clientOrderController.addClientOrder();
-        clientOrderController.addClientOrder();
-        clientOrderController.addClientOrder();
+        mainController.processClientOrder();
+        mainController.processClientOrder();
+        mainController.processClientOrder();
     }
 }

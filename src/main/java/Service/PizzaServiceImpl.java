@@ -16,7 +16,7 @@ public class PizzaServiceImpl implements PizzaService{
     public ArrayList<Integer> getAllPizzasNo() {
         ArrayList<Integer> pizzaNoArrayList = new ArrayList<>();
         for (Pizza pizza : pizzaDao.getAllPizzas()) {
-            pizzaNoArrayList.add(pizza.getPizzaNo());
+            pizzaNoArrayList.add(pizza.pizzaNo());
         }
         return pizzaNoArrayList;
     }

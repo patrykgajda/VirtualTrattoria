@@ -16,7 +16,6 @@ public interface ClientOrderService {
     String getClientName();
     void setClientName(String clientName);
     String getPizzaName();
-    String getPizzaIngredients();
     boolean pizzaChoiceValidation(int pizzaNo);
     boolean clientNoValidation(int clientNo);
     void setClientService(ClientService clientService);
